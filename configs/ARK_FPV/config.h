@@ -23,79 +23,85 @@
 
 #define FC_TARGET_MCU     STM32H743
 
-#define BOARD_NAME        KAKUTEH7
-#define MANUFACTURER_ID   HBRO
+#define BOARD_NAME        ARK_FPV
+#define MANUFACTURER_ID   ARK
 
 #define USE_GYRO
-#define USE_GYRO_SPI_MPU6000
-#define USE_GYRO_SPI_ICM42688P
+#define USE_GYRO_SPI_ICM42688P // TODO: IIM42653 -- need driver
 #define USE_ACC
-#define USE_ACC_SPI_MPU6000
-#define USE_ACC_SPI_ICM42688P
-#define USE_ACCGYRO_BMI270
+#define USE_ACC_SPI_ICM42688P // TODO: IIM42653 -- need driver
 #define USE_BARO
-#define USE_BARO_BMP280
-#define USE_BARO_DPS310
-#define USE_MAX7456
+#define USE_BARO_BMP388 // TODO: BMP390 is the same?
+#define USE_MAG
+#define USE_MAG_QMC5883 // TODO: IIS2MDC -- need driver
 #define USE_SDCARD
 
-#define BEEPER_PIN           PC13
-#define MOTOR1_PIN           PB0
-#define MOTOR2_PIN           PB1
-#define MOTOR3_PIN           PB3
-#define MOTOR4_PIN           PB10
-#define MOTOR5_PIN           PA0
-#define MOTOR6_PIN           PA2
-#define MOTOR7_PIN           PC8
-#define MOTOR8_PIN           PC9
-#define LED_STRIP_PIN        PD12
-#define UART1_TX_PIN         PA9
-#define UART2_TX_PIN         PD5
-#define UART3_TX_PIN         PD8
-#define UART4_TX_PIN         PD1
-#define UART6_TX_PIN         PC6
-#define UART1_RX_PIN         PA10
-#define UART2_RX_PIN         PD6
-#define UART3_RX_PIN         PD9
-#define UART4_RX_PIN         PD0
-#define UART6_RX_PIN         PC7
-#define UART7_RX_PIN         PE7
-#define I2C1_SCL_PIN         PB6
-#define I2C1_SDA_PIN         PB7
-#define LED0_PIN             PC2
-#define SPI1_SCK_PIN         PA5
-#define SPI2_SCK_PIN         PB13
-#define SPI4_SCK_PIN         PE2
-#define SPI1_SDI_PIN         PA6
-#define SPI2_SDI_PIN         PB14
-#define SPI4_SDI_PIN         PE5
-#define SPI1_SDO_PIN         PA7
-#define SPI2_SDO_PIN         PB15
-#define SPI4_SDO_PIN         PE6
-#define CAMERA_CONTROL_PIN   PE9
-#define ADC_VBAT_PIN         PC0
-#define ADC_RSSI_PIN         PC5
-#define ADC_CURR_PIN         PC1
-#define SDCARD_SPI_CS_PIN    PA4
-#define SDCARD_DETECT_PIN    PA3
-#define PINIO1_PIN           PE13
-#define MAX7456_SPI_CS_PIN   PB12
-#define GYRO_1_EXTI_PIN      PE1
-#define GYRO_1_CS_PIN        PE4
-#define USB_DETECT_PIN       PA8
+#define BEEPER_PIN           PF9
 
+#define MOTOR1_PIN           PI0
+#define MOTOR2_PIN           PH12
+#define MOTOR3_PIN           PH11
+#define MOTOR4_PIN           PH10
+#define MOTOR5_PIN           PI5
+#define MOTOR6_PIN           PI6
+#define MOTOR7_PIN           PI7
+#define MOTOR8_PIN           PI2
+
+// #define MOTOR9_PIN           PD12 // TODO: 9 outputs, how to configure?
+// #define LED_STRIP_PIN        PD12
+#define UART1_TX_PIN         PB6
+#define UART2_TX_PIN         PD5
+#define UART4_TX_PIN         PH13
+#define UART5_TX_PIN         PC12
+#define UART6_TX_PIN         PC6
+#define UART7_TX_PIN         PE8
+#define UART1_RX_PIN         PB7
+#define UART2_RX_PIN         PA3
+#define UART4_RX_PIN         PH14
+#define UART5_RX_PIN         PD2
+#define UART6_RX_PIN         PC7
+#define UART7_RX_PIN         PF6
+
+#define UART7_RTS_PIN         PF8
+#define UART7_CTS_PIN         PE10
+
+#define I2C1_SCL_PIN         PB8
+#define I2C1_SDA_PIN         PB9
+#define I2C2_SCL_PIN         PF1
+#define I2C2_SDA_PIN         PF0
+#define I2C4_SCL_PIN         PF14
+#define I2C4_SDA_PIN         PF15
+
+#define LED0_PIN             PE5
+#define LED1_PIN             PE4
+#define LED2_PIN             PE3
+
+#define SPI1_SCK_PIN         PA5
+#define SPI6_SCK_PIN         PB3
+#define SPI1_SDI_PIN         PG9
+#define SPI6_SDI_PIN         PA6
+#define SPI1_SDO_PIN         PB5
+#define SPI6_SDO_PIN         PG14
+
+#define ADC_VBAT_PIN         PB0
+#define ADC_CURR_PIN         PC2
+
+#define GYRO_1_EXTI_PIN      PF2
+#define GYRO_1_CS_PIN        PI9
+#define USB_DETECT_PIN       PA9
+
+// TODO: I have no idea what the last 2 options do
 #define TIMER_PIN_MAPPING \
-    TIMER_PIN_MAP( 0, MOTOR1_PIN        , 2,  0) \
-    TIMER_PIN_MAP( 1, MOTOR2_PIN        , 2,  1) \
+    TIMER_PIN_MAP( 0, MOTOR1_PIN        , 1,  0) \
+    TIMER_PIN_MAP( 1, MOTOR2_PIN        , 1,  1) \
     TIMER_PIN_MAP( 2, MOTOR3_PIN        , 1,  2) \
     TIMER_PIN_MAP( 3, MOTOR4_PIN        , 1,  3) \
-    TIMER_PIN_MAP( 4, MOTOR5_PIN        , 2,  4) \
-    TIMER_PIN_MAP( 5, MOTOR6_PIN        , 2,  5) \
-    TIMER_PIN_MAP( 6, MOTOR7_PIN        , 2,  6) \
-    TIMER_PIN_MAP( 7, MOTOR8_PIN        , 2,  7) \
-    TIMER_PIN_MAP( 8, LED_STRIP_PIN     , 1, 14) \
-    TIMER_PIN_MAP( 9, CAMERA_CONTROL_PIN, 1, -1)
+    TIMER_PIN_MAP( 4, MOTOR5_PIN        , 1,  4) \
+    TIMER_PIN_MAP( 5, MOTOR6_PIN        , 1,  5) \
+    TIMER_PIN_MAP( 6, MOTOR7_PIN        , 1,  6) \
+    TIMER_PIN_MAP( 7, MOTOR8_PIN        , 1,  7)
 
+// TODO: I have no idea what these DMA options mean
 #define SPI1_TX_DMA_OPT             13
 #define ADC1_DMA_OPT                 8
 #define ADC3_DMA_OPT                 9
@@ -106,21 +112,16 @@
 #define TIMUP5_DMA_OPT               3
 #define TIMUP8_DMA_OPT               1
 
-#define MAG_I2C_INSTANCE             I2CDEV_1
-#define BARO_I2C_INSTANCE            I2CDEV_1
+#define BARO_I2C_INSTANCE            I2CDEV_2
+#define MAG_I2C_INSTANCE             I2CDEV_3
 
 #define DEFAULT_BLACKBOX_DEVICE      BLACKBOX_DEVICE_SDCARD
 #define DEFAULT_CURRENT_METER_SOURCE CURRENT_METER_ADC
 #define DEFAULT_VOLTAGE_METER_SOURCE VOLTAGE_METER_ADC
+// TODO: determine scale -- note this does not line up between ardu/bf board ports
 #define DEFAULT_VOLTAGE_METER_SCALE  109
 #define DEFAULT_CURRENT_METER_SCALE  168
-#define BEEPER_INVERTED
-#define SDCARD_DETECT_INVERTED
-#define USE_SDCARD_SPI
-#define SDCARD_SPI_INSTANCE          SPI1
-#define MAX7456_SPI_INSTANCE         SPI2
-#define PINIO1_CONFIG                129
-#define PINIO1_BOX                   0
-#define GYRO_1_SPI_INSTANCE          SPI4
+
+#define GYRO_1_SPI_INSTANCE          SPI1
 #define GYRO_1_ALIGN                 CW270_DEG
 #define GYRO_1_ALIGN_YAW             2700
