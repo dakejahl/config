@@ -27,16 +27,19 @@
 #define MANUFACTURER_ID   ARK
 
 #define USE_GYRO
-#define USE_GYRO_SPI_ICM42688P // TODO: IIM42653 -- need driver
+#define USE_GYRO_SPI_IIM42653
 #define USE_ACC
-#define USE_ACC_SPI_ICM42688P // TODO: IIM42653 -- need driver
+#define USE_ACC_SPI_IIM42653
 #define USE_BARO
 #define USE_BARO_BMP388 // TODO: BMP390 is the same?
 #define USE_MAG
-#define USE_MAG_QMC5883 // TODO: IIS2MDC -- need driver
+#define USE_MAG_IIS2MDC
 #define USE_SDCARD
 
 #define BEEPER_PIN           PF9
+
+#define TARGET_IO_PORTH      0xffff
+#define TARGET_IO_PORTI      0xffff
 
 #define MOTOR1_PIN           PI0
 #define MOTOR2_PIN           PH12
@@ -51,19 +54,21 @@
 // #define LED_STRIP_PIN        PD12
 #define UART1_TX_PIN         PB6
 #define UART2_TX_PIN         PD5
+#define UART3_TX_PIN         PD8
 #define UART4_TX_PIN         PH13
 #define UART5_TX_PIN         PC12
 #define UART6_TX_PIN         PC6
 #define UART7_TX_PIN         PE8
 #define UART1_RX_PIN         PB7
 #define UART2_RX_PIN         PA3
+#define UART3_RX_PIN         PD9
 #define UART4_RX_PIN         PH14
 #define UART5_RX_PIN         PD2
 #define UART6_RX_PIN         PC7
 #define UART7_RX_PIN         PF6
 
-#define UART7_RTS_PIN         PF8
-#define UART7_CTS_PIN         PE10
+#define UART7_RTS_PIN        PF8
+#define UART7_CTS_PIN        PE10
 
 #define I2C1_SCL_PIN         PB8
 #define I2C1_SDA_PIN         PB9
@@ -90,32 +95,48 @@
 #define GYRO_1_CS_PIN        PI9
 #define USB_DETECT_PIN       PA9
 
+// TODO: 3v3 sensors enable
+// TODO: 3v3 adc measurement
+// TODO: 3v3 sd card enable
+// TODO: 12v enable
+// TODO: 12v pgood
+// TODO: 5v pgood
+// TODO: 5v on_bat_n
+
+// TODO: configure all IO to OUTPUT LOW PULLDOWN (see ardupilot DEFAULTGPIO)
+
+
+// TODO: heater resistor timer
+
+
+
 // TODO: I have no idea what the last 2 options do
 #define TIMER_PIN_MAPPING \
-    TIMER_PIN_MAP( 0, MOTOR1_PIN        , 1,  0) \
-    TIMER_PIN_MAP( 1, MOTOR2_PIN        , 1,  1) \
-    TIMER_PIN_MAP( 2, MOTOR3_PIN        , 1,  2) \
-    TIMER_PIN_MAP( 3, MOTOR4_PIN        , 1,  3) \
-    TIMER_PIN_MAP( 4, MOTOR5_PIN        , 1,  4) \
-    TIMER_PIN_MAP( 5, MOTOR6_PIN        , 1,  5) \
-    TIMER_PIN_MAP( 6, MOTOR7_PIN        , 1,  6) \
-    TIMER_PIN_MAP( 7, MOTOR8_PIN        , 1,  7)
+    TIMER_PIN_MAP( 0, MOTOR1_PIN        , 1,  -1) \
+    TIMER_PIN_MAP( 1, MOTOR2_PIN        , 1,  -1) \
+    TIMER_PIN_MAP( 2, MOTOR3_PIN        , 1,  -1) \
+    TIMER_PIN_MAP( 3, MOTOR4_PIN        , 1,  -1) \
+    TIMER_PIN_MAP( 4, MOTOR5_PIN        , 1,  -1) \
+    TIMER_PIN_MAP( 5, MOTOR6_PIN        , 1,  -1) \
+    TIMER_PIN_MAP( 6, MOTOR7_PIN        , 1,  -1) \
+    TIMER_PIN_MAP( 7, MOTOR8_PIN        , 1,  -1)
 
 // TODO: I have no idea what these DMA options mean
-#define SPI1_TX_DMA_OPT             13
-#define ADC1_DMA_OPT                 8
-#define ADC3_DMA_OPT                 9
-#define TIMUP1_DMA_OPT               0
-#define TIMUP2_DMA_OPT               0
-#define TIMUP3_DMA_OPT               2
-#define TIMUP4_DMA_OPT               0
-#define TIMUP5_DMA_OPT               3
-#define TIMUP8_DMA_OPT               1
+// #define SPI1_TX_DMA_OPT             13
+// #define ADC1_DMA_OPT                 8
+// #define ADC3_DMA_OPT                 9
+// #define TIMUP1_DMA_OPT               0
+// #define TIMUP2_DMA_OPT               0
+// #define TIMUP3_DMA_OPT               2
+// #define TIMUP4_DMA_OPT               0
+// #define TIMUP5_DMA_OPT               3
+// #define TIMUP8_DMA_OPT               1
 
 #define BARO_I2C_INSTANCE            I2CDEV_2
 #define MAG_I2C_INSTANCE             I2CDEV_3
 
 #define DEFAULT_BLACKBOX_DEVICE      BLACKBOX_DEVICE_SDCARD
+// #define DEFAULT_DSHOT_BURST          DSHOT_DMAR_ON
 #define DEFAULT_CURRENT_METER_SOURCE CURRENT_METER_ADC
 #define DEFAULT_VOLTAGE_METER_SOURCE VOLTAGE_METER_ADC
 // TODO: determine scale -- note this does not line up between ardu/bf board ports
@@ -125,3 +146,5 @@
 #define GYRO_1_SPI_INSTANCE          SPI1
 #define GYRO_1_ALIGN                 CW270_DEG
 #define GYRO_1_ALIGN_YAW             2700
+
+#define MSP_UART SERIAL_PORT_UART3
