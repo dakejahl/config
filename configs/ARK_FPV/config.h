@@ -22,7 +22,7 @@
 #pragma once
 
 #define FC_TARGET_MCU     STM32H743
-
+#define SYSTEM_HSE_MHZ    16
 #define BOARD_NAME        ARK_FPV
 #define MANUFACTURER_ID   ARK
 
@@ -35,6 +35,8 @@
 #define USE_MAG
 #define USE_MAG_IIS2MDC
 #define USE_SDCARD
+
+#define SDCARD_DETECT_PIN    PC13
 
 #define BEEPER_PIN           PF9
 
@@ -49,7 +51,6 @@
 #define MOTOR6_PIN           PI6
 #define MOTOR7_PIN           PI7
 #define MOTOR8_PIN           PI2
-
 // #define MOTOR9_PIN           PD12 // TODO: 9 outputs, how to configure?
 // #define LED_STRIP_PIN        PD12
 #define UART1_TX_PIN         PB6
@@ -95,20 +96,17 @@
 #define GYRO_1_CS_PIN        PI9
 #define USB_DETECT_PIN       PA9
 
-// TODO: 3v3 sensors enable
+#define DEFAULT_GPIO_ARRAY \
+    DEFAULT_GPIO_CONFIG(PI11, IOCFG_OUT_PP, 1), \
+    DEFAULT_GPIO_CONFIG(PG4,  IOCFG_OUT_PP, 1), \
+    DEFAULT_GPIO_CONFIG(PC13, IOCFG_OUT_PP, 1)
+
 // TODO: 3v3 adc measurement
-// TODO: 3v3 sd card enable
-// TODO: 12v enable
 // TODO: 12v pgood
 // TODO: 5v pgood
 // TODO: 5v on_bat_n
-
 // TODO: configure all IO to OUTPUT LOW PULLDOWN (see ardupilot DEFAULTGPIO)
-
-
 // TODO: heater resistor timer
-
-
 
 // TODO: I have no idea what the last 2 options do
 #define TIMER_PIN_MAPPING \
