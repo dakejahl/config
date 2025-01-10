@@ -34,9 +34,7 @@
 #define USE_BARO_BMP388 // TODO: BMP390 is the same?
 #define USE_MAG
 #define USE_MAG_IIS2MDC
-#define USE_SDCARD
 
-#define SDCARD_DETECT_PIN    PC13
 
 #define BEEPER_PIN           PF9
 
@@ -82,12 +80,33 @@
 #define LED1_PIN             PE4
 #define LED2_PIN             PE3
 
+#define USE_SPI
+#define USE_SPI_DEVICE_1
 #define SPI1_SCK_PIN         PA5
-#define SPI6_SCK_PIN         PB3
 #define SPI1_SDI_PIN         PG9
-#define SPI6_SDI_PIN         PA6
 #define SPI1_SDO_PIN         PB5
+
+#define SPI6_SCK_PIN         PB3
+#define SPI6_SDI_PIN         PA6
 #define SPI6_SDO_PIN         PG14
+
+// We have some enable signals that need to be set
+#define VDD_3V3_SENSORS1_EN  PI11
+#define PERIPH_12V_EN        PG4
+#define VDD_3V3_SD_CARD_EN   PC13
+
+// SD card
+#define USE_SDCARD
+#define USE_SDCARD_SDIO
+#define SDIO_DEVICE         SDIODEV_2
+#define SDIO_USE_4BIT       false
+#define SDIO_CK_PIN         PD6    // SDMMC2_CK
+#define SDIO_CMD_PIN        PD7    // SDMMC2_CMD
+#define SDIO_D0_PIN         PB14   // SDMMC2_D0
+#define SDIO_D1_PIN         PB15   // SDMMC2_D1
+#define SDIO_D2_PIN         PG11   // SDMMC2_D2
+#define SDIO_D3_PIN         PB4    // SDMMC2_D3
+#define DEFAULT_BLACKBOX_DEVICE      BLACKBOX_DEVICE_SDCARD
 
 #define ADC_VBAT_PIN         PB0
 #define ADC_CURR_PIN         PC2
@@ -97,9 +116,9 @@
 #define USB_DETECT_PIN       PA9
 
 #define DEFAULT_GPIO_ARRAY \
-    DEFAULT_GPIO_CONFIG(PI11, IOCFG_OUT_PP, 1), \
-    DEFAULT_GPIO_CONFIG(PG4,  IOCFG_OUT_PP, 1), \
-    DEFAULT_GPIO_CONFIG(PC13, IOCFG_OUT_PP, 1)
+    DEFAULT_GPIO_CONFIG(VDD_3V3_SENSORS1_EN, IOCFG_OUT_PP, 1), \
+    DEFAULT_GPIO_CONFIG(PERIPH_12V_EN,       IOCFG_OUT_PP, 1), \
+    DEFAULT_GPIO_CONFIG(VDD_3V3_SD_CARD_EN,  IOCFG_OUT_PP, 1), \
 
 // TODO: 3v3 adc measurement
 // TODO: 12v pgood
@@ -131,9 +150,8 @@
 // #define TIMUP8_DMA_OPT               1
 
 #define BARO_I2C_INSTANCE            I2CDEV_2
-#define MAG_I2C_INSTANCE             I2CDEV_3
+#define MAG_I2C_INSTANCE             I2CDEV_4
 
-#define DEFAULT_BLACKBOX_DEVICE      BLACKBOX_DEVICE_SDCARD
 // #define DEFAULT_DSHOT_BURST          DSHOT_DMAR_ON
 #define DEFAULT_CURRENT_METER_SOURCE CURRENT_METER_ADC
 #define DEFAULT_VOLTAGE_METER_SOURCE VOLTAGE_METER_ADC
@@ -146,3 +164,4 @@
 #define GYRO_1_ALIGN_YAW             2700
 
 #define MSP_UART SERIAL_PORT_UART3
+
