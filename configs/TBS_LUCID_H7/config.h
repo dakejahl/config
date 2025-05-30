@@ -49,6 +49,13 @@
 #define USE_BARO
 #define USE_BARO_DPS310
 #define BARO_I2C_INSTANCE    I2CDEV_2
+
+#ifndef USE_MAG
+#define USE_MAG
+#endif
+#ifndef USE_MAG_LIS2MDL
+#define USE_MAG_LIS2MDL
+#endif
 #define MAG_I2C_INSTANCE     I2CDEV_1
 
 #define USE_MAX7456
