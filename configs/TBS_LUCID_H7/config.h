@@ -57,6 +57,7 @@
 #define USE_MAG_LIS2MDL
 #endif
 #define MAG_I2C_INSTANCE     I2CDEV_1
+#define USE_I2C_PULLUP
 
 #define USE_MAX7456
 #define MAX7456_SPI_INSTANCE SPI2
